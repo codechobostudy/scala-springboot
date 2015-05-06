@@ -3,9 +3,11 @@ package io.codechobostudy.sample.config
 import javax.servlet.http.HttpServletResponse
 import javax.servlet._
 
+import org.springframework.context.annotation.Profile
 import org.springframework.stereotype.Component
 
 @Component
+@Profile(Array("dev"))
 class SimpleCORSFilter extends Filter {
 
   def doFilter(req: ServletRequest, res: ServletResponse, chain: FilterChain) {

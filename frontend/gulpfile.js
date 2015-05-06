@@ -45,12 +45,36 @@ gulp.task('min',['coffee', 'less'], function () {
         minifyCss = require('gulp-minify-css'),
         useref = require('gulp-useref'),
         gulpif = require('gulp-if'),
+        rjs = require("gulp-requirejs"),
+        concat = require("gulp-concat"),
         assets = useref.assets();
-
 
     return gulp.src(['app/*.html'])
         .pipe(assets)
-        .pipe(gulpif('*.js', uglify()))
+        .pipe(rjs({
+            baseUrl: 'app/scripts',
+            name: 'app',
+            out: 'scripts/app.min.js',
+            shim: {
+                underscore: {
+                    exports: '_'
+                },
+                backbone: {
+                    deps: [
+                        'underscore',
+                        'jquery'
+                    ],
+                    exports: 'Backbone'
+                }
+            },
+            paths: {
+                jquery: '../bower_components/jquery/dist/jquery',
+                underscore: '../bower_components/underscore/underscore',
+                backbone: '../bower_components/backbone/backbone',
+                text: '../bower_components/requirejs-text/text'
+            }
+        }))
+        .pipe(uglify())
         .pipe(gulpif('*.css', minifyCss()))
         .pipe(assets.restore())
         .pipe(useref())

@@ -1,31 +1,22 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>PoohShop</title>
     <title>luna</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-    <!-- build:css styles/vendor.min.css -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css">
-    <link rel="stylesheet" href="bower_components/fontawesome/css/font-awesome.css">
-    <!-- endbower -->
-    <!-- endbuild -->
 </head>
 <body>
+dd
+    <div id="content"></div>
+    <input id="message" th:type="hidden" th:value="${message}" />
 
 
-<!-- build:js scripts/vendor.min.js -->
-<!-- bower:js -->
-<script src="bower_components/jquery/dist/jquery.js"></script>
-<script src="bower_components/underscore/underscore.js"></script>
-<script src="bower_components/backbone/backbone.js"></script>
-<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
-<script src="bower_components/handlebars/handlebars.js"></script>
-<script src="bower_components/moment/moment.js"></script>
-<!-- endbower -->
+<!-- build:custom  <script data-main="scripts/app.min.js" th:src="@{/bower_components/requirejs/require.js}" -->
+<script th:src="@{/bower_components/requirejs/require.js}"></script>
+<script th:src="@{/scripts/main.js}"></script>
+<script th:src="@{/scripts/app.js}"></script>
 <!-- endbuild -->
 </body>
 </html>

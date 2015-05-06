@@ -1,6 +1,6 @@
 package io.codechobostudy.sample.config
 
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.beans.factory.annotation.{Value, Autowired}
 import org.springframework.context.annotation.{Bean, ComponentScan, Configuration}
 import org.springframework.core.env.Environment
 import org.springframework.web.servlet.config.annotation.{ResourceHandlerRegistry, ViewControllerRegistry, WebMvcConfigurerAdapter}
@@ -13,6 +13,10 @@ import org.thymeleaf.templateresolver.{TemplateResolver, ITemplateResolver}
 class WebConfig extends WebMvcConfigurerAdapter {
 
   private var environment: Environment = _
+
+  @Value("${app.version:}")
+  private var appVersion: String = _
+
 
   override def addViewControllers(registry: ViewControllerRegistry) {
     registry.addViewController("/").setViewName("index")
@@ -43,7 +47,7 @@ class WebConfig extends WebMvcConfigurerAdapter {
 
     val appCacheTransformer = new AppCacheManifestTransformer
     val versionResolver = new VersionResourceResolver()
-      .addFixedVersionStrategy("de4db33f", "/**/*.js", "/**/*.map")
+      .addFixedVersionStrategy(getApplicationVersion, "/**/*.js", "/**/*.map")
       .addContentVersionStrategy("/**")
 
     registry.addResourceHandler(pathPatterns)
@@ -73,6 +77,10 @@ class WebConfig extends WebMvcConfigurerAdapter {
     templateResolver.setCacheable(cacheable)
 
     return  templateResolver
+  }
+
+  def getApplicationVersion : String = {
+    return if (environment.acceptsProfiles("dev")) "dev" else appVersion
   }
 
   @Autowired

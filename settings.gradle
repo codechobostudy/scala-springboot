@@ -1,0 +1,6 @@
+rootProject.name = 'codechobostudy-scala-sample'
+
+include  'backend', 'frontend'
+
+include 'common'
+

@@ -1,12 +1,10 @@
 package io.codechobostudy.sample.config
 
-import org.springframework.beans.factory.annotation.{Value, Autowired}
+import org.springframework.beans.factory.annotation.{Autowired, Value}
 import org.springframework.context.annotation.{Bean, ComponentScan, Configuration}
 import org.springframework.core.env.Environment
 import org.springframework.web.servlet.config.annotation.{ResourceHandlerRegistry, ViewControllerRegistry, WebMvcConfigurerAdapter}
-import org.springframework.web.servlet.resource.{VersionResourceResolver, AppCacheManifestTransformer, ResourceUrlEncodingFilter}
-import org.thymeleaf.spring4.resourceresolver.SpringResourceResourceResolver
-import org.thymeleaf.templateresolver.{TemplateResolver, ITemplateResolver}
+import org.springframework.web.servlet.resource.{AppCacheManifestTransformer, ResourceUrlEncodingFilter, VersionResourceResolver}
 
 @Configuration
 @ComponentScan
@@ -43,7 +41,7 @@ class WebConfig extends WebMvcConfigurerAdapter {
 
     val appCacheTransformer = new AppCacheManifestTransformer
     val versionResolver = new VersionResourceResolver()
-      .addFixedVersionStrategy(getApplicationVersion, "/**/*.js", "/**/*.map")
+      //.addFixedVersionStrategy(getApplicationVersion, "/**/*.js", "/**/*.map")
       .addContentVersionStrategy("/**")
 
     registry.addResourceHandler(pathPatterns)

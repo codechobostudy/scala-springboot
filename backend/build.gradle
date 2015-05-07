@@ -27,6 +27,16 @@ dependencies {
     compile 'com.jayway.restassured:rest-assured:2.4.1'
     runtime 'net.sourceforge.nekohtml:nekohtml:1.9.21'
     runtime 'org.codehaus.groovy:groovy-all:2.4.3'
+
+
+    //webjars
+    compile 'org.webjars:jquery:1.11.3'
+    compile 'org.webjars:underscorejs:1.8.3'
+    compile 'org.webjars:backbonejs:1.1.2-4'
+    compile 'org.webjars:bootstrap:3.3.4'
+    compile 'org.webjars:requirejs:2.1.17'
+    compile 'org.webjars:webjars-locator:0.21'
+
 }
 
 sourceSets {

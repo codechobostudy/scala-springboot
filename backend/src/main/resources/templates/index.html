@@ -3,10 +3,15 @@
 <head>
     <title>Getting Started: Spring Boot CLI + Javascript</title>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+
+    <script data-main="/js/app" src="/webjarsjs"></script>
+    <script th:src="@{/webjars/requirejs/2.1.17/require.min.js}"></script>
 </head>
 <body>
-<p th:text="'vvf, ' + ${message} + '!'" />
+Gooooood!
+<div id="content">
 
-<script th:src="@{/scripts/app.js}"></script>
+</div>
+<input th:type="hidden" th:id="message" th:value="${message}" />
 </body>
 </html>

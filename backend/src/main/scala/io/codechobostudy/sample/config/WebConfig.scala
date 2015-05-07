@@ -34,13 +34,9 @@ class WebConfig extends WebMvcConfigurerAdapter {
     var cachePeriod: java.lang.Integer = null
     var useResourceCache = false
 
-    var locations = "classpath:static/"
+    val locations = "classpath:static/"
 
-    if (environment.acceptsProfiles("dev")) {
-
-      val staticLocation = environment.getRequiredProperty("static.path") +"/app/"
-
-      locations = "file:" + staticLocation
+    if (isDevMode) {
       cachePeriod = 0
       useResourceCache = true
     }
@@ -56,27 +52,6 @@ class WebConfig extends WebMvcConfigurerAdapter {
       .resourceChain(useResourceCache)
       .addResolver(versionResolver)
       .addTransformer(appCacheTransformer)
-  }
-
-  @Bean
-  def templateResolver(resourceResolver: SpringResourceResourceResolver) : ITemplateResolver = {
-    val templateResolver = new TemplateResolver
-    var prefix = "classpath:view/"
-    var cacheable = true
-
-    if(environment.acceptsProfiles("dev")){
-      prefix = "file:"+environment.getRequiredProperty("static.path")+"/app/"
-      cacheable = false
-    }
-
-    templateResolver.setResourceResolver(resourceResolver)
-    templateResolver.setPrefix(prefix)
-    templateResolver.setSuffix(".html")
-    templateResolver.setTemplateMode("LEGACYHTML5")
-    templateResolver.setCharacterEncoding("UTF-8")
-    templateResolver.setCacheable(cacheable)
-
-    return  templateResolver
   }
 
   def getApplicationVersion : String = {

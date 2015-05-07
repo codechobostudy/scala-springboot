@@ -30,17 +30,3 @@ configure(allprojects) { project ->
         mavenCentral()
     }
 }
-
-project(':frontend') {
-
-    sourceSets.main.resources { srcDirs 'dist' }
-    jar {
-        from 'dist'
-        includeEmptyDirs = false
-    }
-
-    clean {
-        delete ".tmp"
-        delete "dist"
-    }
-}

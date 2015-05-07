@@ -27,7 +27,6 @@ dependencies {
     compile 'com.jayway.restassured:rest-assured:2.4.1'
     runtime 'net.sourceforge.nekohtml:nekohtml:1.9.21'
     runtime 'org.codehaus.groovy:groovy-all:2.4.3'
-    runtime project(':frontend')
 }
 
 sourceSets {
